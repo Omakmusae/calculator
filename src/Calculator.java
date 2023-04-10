@@ -1,29 +1,18 @@
 public class Calculator {
 
-    private final AddOperation addOperation;
-    private final SubstractOperation substractOperation;
-    private final MultiplyOperation multiplyOperation;
-    private final DivideOperation divideOperation;
+    private AbstractOperation operation;
 
-    public Calculator(AddOperation addOperation, SubstractOperation substractOperation, MultiplyOperation multiplyOperation, DivideOperation divideOperation) {
-        this.addOperation = addOperation;
-        this.substractOperation = substractOperation;
-        this.multiplyOperation = multiplyOperation;
-        this.divideOperation = divideOperation;
+    public Calculator(AbstractOperation operation) {
+        this.operation = operation;
     }
 
-    public double calculate(String operator, int firstNumber, int secondNumber) {
-        double result = 0;
+    public void setOperation(AbstractOperation operation) {
+        this.operation = operation;
+    }
 
-        if(operator.equals("+")){
-            result = addOperation.operate(firstNumber, secondNumber);
-        }else if(operator.equals("-")){
-            result = substractOperation.operate(firstNumber, secondNumber);
-        }else if(operator.equals("*")){
-            result = multiplyOperation.operate(firstNumber, secondNumber);
-        }else if(operator.equals("/")) {
-            result = divideOperation.operate(firstNumber, secondNumber);
-        }
+    public double calculate(int firstNumber, int secondNumber) {
+        double result = 0;
+        result = operation.operate(firstNumber, secondNumber);
         return result;
     }
 }
